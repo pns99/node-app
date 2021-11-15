@@ -10,7 +10,7 @@ pipeline {
       }
       stage (" Build docker image") {
         steps {
-          sh " ssh santu@192.168.130.191 "cd /opt/apps/node-app/; docker build -t santu459/nodeapp:${DOCKER_TAG} . "'
+          sh ' ssh santu@192.168.130.191 "cd /opt/apps/node-app/; docker build -t santu459/nodeapp:${DOCKER_TAG} . "'
           }
         }
         
