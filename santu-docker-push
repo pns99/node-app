@@ -8,7 +8,7 @@ pipeline {
         sh " docker build -t santu459/nodeapp:2.0 . "
       }
     }
-    Stage ("Docker push") {
+    stage ("Docker push") {
       steps {
         sh "docker push santu459/nodeapp:2.0 "
       }
