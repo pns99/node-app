@@ -15,12 +15,12 @@ pipeline {
     stage ("deploy to kube") {
       steps {
         sshagent(['santuaws']) {
-          sh " scp -o StrictHostKeyChecking=no services.yml pods.yml ubuntu@3.142.201.72:/home/ubuntu/"
+          sh " scp -o StrictHostKeyChecking=no services.yml pods.yml ubuntu@18.224.73.158:/home/ubuntu/"
           script {
             try {
-              sh " ssh ubuntu@3.142.201.72  kubectl apply -f . "
+              sh " ssh ubuntu@18.224.73.158  kubectl apply -f . "
             }catch(error) {
-              sh " ssh ubuntu@3.142.201.72  kubectl create -f . "
+              sh " ssh ubuntu@18.224.73.158  kubectl create -f . "
             }
          }
        }
