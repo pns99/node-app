@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage (" Copy files to Docker_Host") {
       steps {
-        sh "scp -pr /var/lib/jenkins/workspace/* santu@192.168.130.191:/opt/apps/node-app/"
+        sh "scp -pr /var/lib/jenkins/workspace/santu_kube/kube01-buildimage/* santu@192.168.130.191:/opt/apps/node-app/"
         }
       }
       stage (" Build docker image") {
@@ -22,5 +22,4 @@ def getDockerTag() {
     return tag
 }
  
-       
           
