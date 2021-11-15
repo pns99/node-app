@@ -1,0 +1,30 @@
+pipeline {
+  agent {label 'santunode01'}
+  
+  stages {
+    stage (" Build Docker image") {
+      steps {
+        sh " docker build -t santu459/nodeapp:2.0 . "
+      }
+    }
+    stage ("Docker push") {
+      steps {
+        sh "docker push santu459/nodeapp:2.0 "
+      }
+    }
+    stage ("deploy to kube") {
+      steps {
+        sshagent(['santuaws']) {
+          sh " scp -o StrictHostKeyChecking=no service.yml pods.yml ubuntu@3.142.201.72:/home/ubuntu/"
+          script {
+            try {
+              sh " ssh ubuntu@3.142.201.72 kubectl apply -f . "
+            }catch(error) {
+              sh " ssh ubuntu@3.142.201.72 kubectl create -f . "
+            }
+         }
+       }
+     }
+  }
+  
+}
