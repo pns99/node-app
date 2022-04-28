@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage (" Build Docker image") {
       steps {
-        sh " docker build -t santu459/nodeapp:2.0 . "
+        sh " docker build -t santu459/nodeapp:3.0 . "
       }
     }
   }
